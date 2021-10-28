@@ -45,19 +45,4 @@
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="TODO" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="125dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="137dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_action"
-        app:srcCompat="@drawable/lemon_tree"
-        tools:ignore="ImageContrastCheck"
-        android:contentDescription="TODO" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

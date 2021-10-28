@@ -63,8 +63,9 @@ class MainActivity : AppCompatActivity() {
         //Done TODO: call the method that handles the state when the image is clicked
         }
         lemonImage!!.setOnLongClickListener {
+            showSnackbar()
             // TODO: replace 'false' with a call to the function that shows the squeeze count
-            false
+
         }
     }
 
@@ -100,6 +101,8 @@ class MainActivity : AppCompatActivity() {
             }
         } else if (lemonadeState == DRINK) {
             lemonadeState = RESTART
+            lemonSize=-1
+
         } else {
             lemonadeState = SELECT
 
@@ -138,13 +141,17 @@ class MainActivity : AppCompatActivity() {
 
 
         when (lemonadeState) {
-            SELECT -> lemonImage?.setImageResource(R.drawable.lemon_tree)
+            SELECT -> {textAction.text="Selcet lemonn"
+                lemonImage?.setImageResource(R.drawable.lemon_tree)}
 
-            SQUEEZE -> lemonImage?.setImageResource(R.drawable.lemon_squeeze)
+            SQUEEZE -> {textAction.text="click to juice"
+                lemonImage?.setImageResource(R.drawable.lemon_squeeze)}
 
-            DRINK -> lemonImage?.setImageResource(R.drawable.lemon_drink)
+            DRINK ->{textAction.text="drink"
+                lemonImage?.setImageResource(R.drawable.lemon_drink)}
 
-            RESTART -> lemonImage?.setImageResource(R.drawable.lemon_restart)
+            RESTART ->{textAction.text="Start again"
+                lemonImage?.setImageResource(R.drawable.lemon_restart)}
         }
 
         /**
@@ -152,18 +159,20 @@ class MainActivity : AppCompatActivity() {
          *
          * Long clicking the lemon image will show how many times the lemon has been squeezed.
          */
-        fun showSnackbar(): Boolean {
-            if (lemonadeState != SQUEEZE) {
-                return false
-            }
-            val squeezeText = getString(R.string.squeeze_count, squeezeCount)
-            Snackbar.make(
-                findViewById(R.id.constraint_Layout),
-                squeezeText,
-                Snackbar.LENGTH_SHORT
-            ).show()
-            return true
+
+    }
+
+    private fun showSnackbar(): Boolean {
+        if (lemonadeState != SQUEEZE) {
+            return false
         }
+        val squeezeText = getString(R.string.squeeze_count, squeezeCount)
+        Snackbar.make(
+            findViewById(R.id.constraint_Layout),
+            squeezeText,
+            Snackbar.LENGTH_SHORT
+        ).show()
+        return true
     }
 
     /**
